@@ -1,8 +1,26 @@
 const { Router } = require('express');
-const { getAllVideogame } = require('../controlers/VideogameC');
+
+// Controllers
+const { getAllVideogameApi } = require('../controlers/controlersVideogame/getAllControlers');
 
 const router = Router();
+ 
 
-router.get('/', getAllVideogame)
+//   GET /videogames
+router.get('/videogames', getAllVideogameApi)
+
+//   GET /videogames?name="..."
+// router.get('/videogame', )
+
+//   GET /videogame/{idVideogame}
+// router.get('/videogame/:idVideogame', )
+
+//   POST /videogame
+// router.post('/videogame', )
+
+
+
+
+
 
 module.exports = router
