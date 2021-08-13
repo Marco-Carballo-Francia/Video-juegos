@@ -1,13 +1,13 @@
 const { Router } = require('express');
 
 // Controllers
-const { getAllVideogameApi } = require('../controlers/controlersVideogame/getAllControlers');
+const { getVideogameApi } = require('../controlers/controlersVideogame/getAllControlers');
 
 const router = Router();
  
 
 //   GET /videogames
-router.get('/videogames', getAllVideogameApi)
+router.get('/videogames', getVideogameApi)
 
 //   GET /videogames?name="..."
 // router.get('/videogame', )

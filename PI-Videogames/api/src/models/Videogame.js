@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    dates: {
+    release: {
       type: DataTypes.STRING,
       allowNull: true
     },
@@ -25,9 +25,9 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    platforms: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: false
+    img: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   });
 };

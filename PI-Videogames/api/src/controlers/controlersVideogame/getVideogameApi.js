@@ -2,7 +2,7 @@ require('dotenv').config();
 const { API, API_KEY } = process.env;
 const axios = require('axios');
 
-module.exports = async function getAllVideogameApi(req, res) {
+module.exports = async function getVideogameApi() {
     let videogameArray = [];
 
     if(videogameArray.length <= 100)
@@ -42,11 +42,12 @@ module.exports = async function getAllVideogameApi(req, res) {
             }
             // console.log(videogameArray);  
         }
-        res.status(200);
+        // res.status(200).send('Conexion exitosa');
     } catch(err) {
         console.log(err); 
         res.status(500).send('server is not responding');
     }
+    return videogameArray;
 }
 
 

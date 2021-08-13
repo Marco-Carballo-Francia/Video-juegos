@@ -1,5 +1,5 @@
-const getAllVideogameApi = require('./getAllVideogameApi');
-
+const getVideogameApi = require('./getVideogameApi');
+const getVideogameDB = require('./getVideogameDB');
 
 
 
@@ -7,5 +7,6 @@ const getAllVideogameApi = require('./getAllVideogameApi');
 
 
 module.exports = {
-    getAllVideogameApi
+    getVideogameApi,
+    getVideogameDB
 }
