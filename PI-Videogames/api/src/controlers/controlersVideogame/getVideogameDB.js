@@ -3,26 +3,29 @@ const { includesDB } = require('./includesDB');
 
 module.exports = async function getVideogameDB() {
     let videogameArrayDB = [];
-
-    try {
+    
+    try {    
         let videogameDB = await Videogame.findAll({
             include: includesDB
         });
+        // console.log(videogameDB);
 
         for (let i = 0; i < videogameDB.length; i++) {
             let index = videogameDB[i];
-            
+            // console.log(index);
+
             let videogameObjDB = {
-                id: index.dateValues.id,
-                name: index.dataValues.name,
-                description: index.dataValues.description,
-                dateRelease: index.dataValues.release,
-                rating: index.dataValues.rating,
+                id: index.id,
+                name: index.name,
+                description: index.description,
+                released: index.released,
+                rating: index.rating,
                 plataforms: index.plataforms.map(pla => pla.name).join(', '),
                 genres: index.genres.map(gen => gen.name).join(', ')
             }
             videogameArrayDB.push(videogameObjDB);
         }
+        // res.status(200).send('Coneccion exitosa');
         return videogameArrayDB;
     } catch (err) {
         console.log(err);
