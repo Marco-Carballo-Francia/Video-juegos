@@ -29,6 +29,6 @@ module.exports = async function getVideogameDB() {
         return videogameArrayDB;
     } catch (err) {
         console.log(err);
-        res.status(500).send('No se conecto a la DB');
+        // res.status(500).send('No se conecto a la DB');
     }
 }

@@ -6,23 +6,21 @@ const axios = require('axios');
 
 module.exports = async function getByID(ID) {
     try {
-        if(typeof ID !== 'number') {
+        if(ID.includes("-")) {
             let getVideogameIDDB = await Videogame.findOne({
-                where: {
-                    id: ID
-                },
+                where: { id: ID },
                 include: includesDB
             });
 
-            const index = getVideogameIDDB
+            const indexDB = getVideogameIDDB;
             let  videogameDB = {
-                id: index.id,
-                name: index.name,
-                description: index.description,
-                release: index.release,
-                rating: index.rating,
-                plataforms: index.map(pla => pla.name).join(', '),
-                genres: index.map(gen => gen.name).join(', ')
+                id: indexDB.id,
+                name: indexDB.name,
+                description: indexDB.description,
+                release: indexDB.release,
+                rating: indexDB.rating,
+                plataforms: indexDB.map(pla => pla.name).join(', '),
+                genres: indexDB.map(gen => gen.name).join(', ')
             }
 
             if (ID === getVideogameID.id)  return videogameDB;
@@ -32,26 +30,27 @@ module.exports = async function getByID(ID) {
 
         let getVideogameIDApi = await axios.get(`${API}/${ID}${API_KEY}`);
         
-        const index = getVideogameIDApi.data.results;
+        const indexAPI = getVideogameIDApi.data;
+        // console.log(getVideogameIDApi);
         let videogameApi = {
-            id: ID,
-            name: index.name,
-            img: index.background_image,
-            released: index.released,
-            rating: index.rating,
-            platforms: index.parent_platforms.map(plat => { 
+            id: indexAPI.id,
+            name: indexAPI.name,
+            img: indexAPI.background_image,
+            released: indexAPI.released,
+            rating: indexAPI.rating,
+            platforms: indexAPI.parent_platforms.map(plat => { 
                 return { 
                     id: plat.platform.id, 
                     name: plat.platform.name 
                 } 
             }),
-            genres: index.genres.map(genres => { 
+            genres: indexAPI.genres.map(gen => { 
                 return { 
-                    id: genres.id, 
-                    name: genres.name 
+                    id: gen.id, 
+                    name: gen.name 
                 } 
             }),
-            description: index.description || 'Description not found in API',
+            description: indexAPI.description || 'Description not found in API',
         };
         
         return videogameApi;

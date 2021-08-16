@@ -43,10 +43,11 @@ module.exports = async function getVideogameApi() {
                 // console.log(videogameArray);  
             }
             // res.status(200).send('Coneccion exitosa');
+            return videogameArray;
         }
     } catch(err) {
         console.log(err); 
-        res.status(500).send('server is not responding');
+        // res.status(500).send('server is not responding');
     }
     return videogameArray;
 }
