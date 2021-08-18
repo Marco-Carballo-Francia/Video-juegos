@@ -1,82 +1,83 @@
-import { GET_VIDEOGAMES, GET_VIDEOGAMES_NAME, GET_VIDEOGAME_ID, GET_GENRES, ADD_VIDEOGAME, FILTER_GENRE, FILTER_VIDEOGAME, ORDER_NAME_ASC, ORDER_NAME_DESC, ORDER_RATING_ASC, ORDER_RATING_DESC, PAGED } from '../Actions/Constants';
+import { GET_VIDEOGAMES, GET_VIDEOGAMES_NAME, GET_VIDEOGAME_ID, GET_GENRES, ADD_VIDEOGAME, FILTER_GENRE, ORDER_NAME, SETING } from '../Actions/Constants';
 
 const initialState = {
-    allVideogames: [],
-    videogame: {},
-    createVideogame: null,
-    page: 1,
-    platforms: [],
-    genres: [],
-    genresFilter: [],
-    videogamesfilter: [],
-    orderNames: null,
-    orderRatings: null
+    videogames: undefined,
+    videogamesCreate: null,
+    videogameDetail: undefined,
+    genres: []
 }
 
-export default function reducer (state = initialState, action) {
+
+export default function rootReducer(state = initialState, action) {
     switch (action.type) {
-        case GET_VIDEOGAMES: 
+        case GET_VIDEOGAMES: {
             return {
                 ...state,
-                allVideogames: action.payload
+                videogames: action.payload
             }
-        case GET_GENRES:
+        }
+        case GET_VIDEOGAME_ID: {
+            return {
+                ...state,
+                videogameDetail: action.payload
+            }
+        }
+        case GET_GENRES: {
             return {
                 ...state,
                 genres: action.payload
             }
-        case GET_VIDEOGAMES_NAME:
+        }
+        case GET_VIDEOGAMES_NAME: {
             return {
                 ...state,
-                allVideogame: action.payload
+                videogames: action.payload
             }
-        case GET_VIDEOGAME_ID:
+        }
+        case ADD_VIDEOGAME: {
             return {
                 ...state,
-                videogame: action.payload
+                videogamesCreate: action.payload
             }
-        case PAGED:
+        }
+        
+        case FILTER_GENRE: {
+            let allVideogames = state.videogames
+            const genresName = allVideogames.map(gen => {
+                return {
+                    ...gen, 
+                    genres: gen.genres.map(e => e.name)
+                }
+            }) 
+            const filtered =  genresName.filter(e => e.genres.includes(action.payload))
+             
             return {
                 ...state,
-                paged: action.payload
+                videogames: filtered
             }
-        case FILTER_VIDEOGAME: 
-            return {
-                ...state,
-                videogamesFilter: action.payload
+        }
+        case ORDER_NAME: {
+            if (action.payload === 'A-Z') {
+                return {
+                    ...state, 
+                    videogames: [...state.videogames].sort((game1, game2) => game1.name > game2.name ? 1 : -1)
+                }
+            } else if (action.payload === 'Z-A') {
+                return {
+                    ...state, 
+                    videogames: [...state.videogames].sort((game1, game2) => game1.name > game2.name ? -1 : 1) 
+                }
             }
-        case FILTER_GENRE:
+            break;
+        }
+        case SETING: {
             return {
                 ...state,
-                genresFilter: action.payload
+                videogames: undefined
             }
-        case ADD_VIDEOGAME:
-            return {
-                ...state,
-                createVideogame: action.payload
-            }
-        case ORDER_NAME_ASC:
-            return {
-                ...state,
-                orderAlph: "Ascendente"
-            }
-
-        case ORDER_NAME_DESC:
-            return {
-                ...state,
-                orderAlph: "Descendente"
-            }
-        case ORDER_RATING_ASC:
-            return {
-                ...state,
-                orderRating: "Ascendente"
-            }
-        case ORDER_RATING_DESC:
-            return {
-                ...state,
-                orderRating: "Descendente",
-            }      
-        default: 
+        }        
+        default: {
             return state;
+        }
     }
 }

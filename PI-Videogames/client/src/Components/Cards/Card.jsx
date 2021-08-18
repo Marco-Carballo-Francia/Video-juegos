@@ -1,12 +1,13 @@
 import React from 'react';
-import './Card.css';
 import { Link } from 'react-router-dom';
+import './Card.css';
+
 
 export function Card(props) {
     return (
         <div className='Card' key={props.id}>
             <div className='img'>
-                <Link to={`/videogame/${props.id}`}>
+                <Link to={`/videogame/:${props.id}`}>
                     <img src={props.img} alt='No se encontro Img' />
                 </Link>
             </div>

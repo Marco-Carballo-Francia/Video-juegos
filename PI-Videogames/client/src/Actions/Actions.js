@@ -1,119 +1,109 @@
-import { GET_VIDEOGAMES, GET_VIDEOGAMES_NAME, GET_VIDEOGAME_ID, GET_GENRES, ADD_VIDEOGAME, FILTER_GENRE, FILTER_VIDEOGAME, ORDER_NAME_ASC, ORDER_NAME_DESC, ORDER_BY_CREATOR, ORDER_RATING_ASC, ORDER_RATING_DESC, PAGED } from "./Constants";
-import { getVideogames, getGenres, getVideogameID, getVideogameName, videogameCreate } from "../Controlers/GetAll";
+import { GET_VIDEOGAMES, GET_VIDEOGAMES_NAME, GET_VIDEOGAME_ID, GET_GENRES, ADD_VIDEOGAME, FILTER_GENRE, ORDER_NAME, ORDER_RATING, SETING } from "./Constants";
+import { getVideogames, getGenres, getVideogameID, getVideogameName, videogameCreate, filterGenres, orderNames, orderRatings } from "../Controlers/GetAll";
 
-export function paged(page) {
-    return (dispatch => dispatch({ 
-        type: PAGED,
-        payload: page 
-    }));
-}
 
 export function allVideogames() {
-    return (dispatch => {
+    return (dispatch) => {
         getVideogames()
-          .then(res => dispatch({
-              type: GET_VIDEOGAMES,
-              payload: res
-          }))
-          .catch(err => {
-              console.log(err);
+          .then(res => {
+            dispatch({ 
+                type: GET_VIDEOGAMES, 
+                payload: res 
+            })
           })
-    });
+    }
 }
 
 export function allGenres() {
-    return (dispatch => {
+    return (dispatch) => {
         getGenres()
-          .then(res => dispatch({
-              type:GET_GENRES,
-              payload: res
-          }))
-          .catch(err => {
-              console.log(err);
+          .then(res => {
+            dispatch({ 
+                type: GET_GENRES, 
+                payload: res 
+            })
           })
-    });
+    }
 }
 
-export function videogameID(id) {
-    return (dispatch => {
+
+export function videogameDetails(id) {
+    return (dispatch) => {
         getVideogameID(id)
-          .then(res => dispatch({
-              type: GET_VIDEOGAME_ID,
-              payload: res
-          }))
-          .catch(err => {
-              console.log(err);
+          .then(res => {
+            dispatch({ 
+                type: GET_VIDEOGAME_ID, 
+                payload: res
+            })
           })
-    })
+    }
 }
 
 export function videogamesName(name) {
-    return (dispatch => {
+    return (dispatch) => {
         getVideogameName(name)
-          .then(res => dispatch({
-              type: GET_VIDEOGAMES_NAME,
-              payload: res
-          }))
-          .catch(err => {
-              console.log(err);
+          .then(res => {
+            dispatch({ 
+                type: GET_VIDEOGAMES_NAME, 
+                payload: res 
+            })
           })
-    })
+    }
 }
 
-export function addVideogameCreate(data) {
-    return(dispatch => {
+export function createVideogame(data) {
+    return (dispatch) => {
         videogameCreate(data)
-          .then(res => dispatch({
-              type: ADD_VIDEOGAME,
-              payload: res
-          }))
-          .catch(err => {
-              console.log(err);
+          .then(res => {
+            dispatch({ 
+                type: ADD_VIDEOGAME, 
+                payload: res 
+            })
           })
-    })
+    }
 }
 
-export function orderNamesAsc() {
-    return (dispatch => dispatch({
-        type: ORDER_NAME_ASC 
-    }));
+export function setVideogames() {
+    return  { 
+        type: SETING, 
+        payload: undefined 
+    }
 }
 
-export function orderNamesDes() {
-    return (dispatch => dispatch({
-        type: ORDER_NAME_DESC 
-    }));
+
+export function filterByGenre(genre) {
+    return (dispatch) => {
+        filterGenres(genre)
+          .then(res => {
+            dispatch({ 
+                type: FILTER_GENRE, 
+                payload: res 
+            })
+          })
+    }
 }
 
-export function orderRatingsAsc() {
-
-    return (dispatch => dispatch({
-        type: ORDER_RATING_ASC
-    }));
+export function orderByName(orderName) {
+    return (dispatch) => {
+        orderNames(orderName)
+          .then(res => {
+            dispatch({ 
+                type: ORDER_NAME, 
+                payload: res
+            })
+          })
+    }
 }
 
-export function orderRatingsDes() {
-    return (dispatch => dispatch({ 
-        type: ORDER_RATING_DESC 
-    }));
+export function orderByRating(orderRating) {
+    return (dispatch) => {
+        orderRatings(orderRating)
+          .then(res => {
+            dispatch({ 
+                type: ORDER_RATING, 
+                payload: res
+            })
+          })
+    }
 }
 
-export function orderByCreator() {
-    return (dispatch => dispatch({ 
-        type: ORDER_BY_CREATOR 
-    }));
-}
-
-export function filterGenres(id) {
-    return (dispatch => dispatch({
-        type: FILTER_GENRE,
-        payload: id 
-    }));
-}
-
-export function filterVideogames(name) {
-    return (dispatch => dispatch({
-        type: FILTER_VIDEOGAME,
-        payload: name
-    }));
-}

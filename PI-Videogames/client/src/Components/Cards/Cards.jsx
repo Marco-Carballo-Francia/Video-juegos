@@ -2,14 +2,16 @@ import React from 'react';
 import './Cards.css';
 import { Card } from './Card';
 
-export function Cards(videogames) {
+
+export function Cards({ videogames }) {
     return (
-        <div className='Cards'>
+        <div className='Cards'> 
             {
-                videogames.map(vid => <Card
-                    key={vid.id}
+                videogames?.map(vid => <Card
+                    img={vid.img}
                     name={vid.name}
-                    genres={vid.genres}                    
+                    genres={vid.genres}    
+                    key={vid.id}                
                 />)
             }
         </div>
