@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import './Home.css';
 import logo from './PrincipalPage-Fondo2.jpg';
 import { Cards } from '../Cards/Cards';
@@ -7,12 +7,14 @@ import { SearchBar } from '../NavBar/SearchBar/SearchBar';
 import { Nav } from '../NavBar/Nav/NavBar';
 import { Order } from '../OrderBar/Order/Order';
 import { Paged } from '../Paged/Paged';
+import { allVideogames as getVideogamesAPI } from '../../Actions/Actions';
 
 export function Home() {
     const [pages, setPages] = useState(1);
     const [allVideogames, setAllVideogames] = useState([]);
 
     const videogames = useSelector((state) => state.videogames);
+    const dispatch = useDispatch();
 
     const videogamesPerPage = 9;
 
@@ -22,8 +24,12 @@ export function Home() {
     const pageds = (num) => setPages(num);
 
     useEffect(() => {
-        setAllVideogames(videogames?.slice());
-    }, [videogames])
+        dispatch(getVideogamesAPI()) // eslint-disable-next-line
+    }, [])
+
+    useEffect(() => {
+        setAllVideogames(videogames?.slice()); // eslint-disable-next-line
+    }, [])
 
     return (
         <div className='Home'>

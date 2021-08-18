@@ -10,7 +10,7 @@ export function SearchBar() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (name.length > 0) {
-            dispatch(videogamesName(e));
+            dispatch(videogamesName(name));
             setName('');
         } else {
             alert('nombre no valido');

@@ -8,7 +8,7 @@ export function Cards({ videogames }) {
         <div className='Cards'> 
             {
                 videogames?.map(vid => <Card
-                    img={vid.img}
+                    img={vid.image}
                     name={vid.name}
                     genres={vid.genres}    
                     key={vid.id}                

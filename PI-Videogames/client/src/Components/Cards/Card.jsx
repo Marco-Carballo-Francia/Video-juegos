@@ -6,13 +6,13 @@ import './Card.css';
 export function Card(props) {
     return (
         <div className='Card' key={props.id}>
-            <div className='img'>
+            <div className='name-linck'>
                 <Link to={`/videogame/:${props.id}`}>
-                    <img src={props.img} alt='No se encontro Img' />
+                    <h3>{props.name}</h3>    
                 </Link>
             </div>
-            <div className='name'>
-                <h5>{props.name}</h5>
+            <div className='img'>
+                <img src={props.img} alt='No se encontro Img' />
             </div>
             <div className='genres'> {
                     props.genres.map(gen => (

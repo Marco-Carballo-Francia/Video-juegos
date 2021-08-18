@@ -1,24 +1,24 @@
 import React, {useState, useEffect} from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './Filter.css';
 import { setVideogames, allGenres, filterByGenre } from '../../../Actions/Actions';
 
 export function Filter() {
     const [filterGenres, setFilterGenres] = useState('');
 
-    const dispatch = useDispatch();
+    const genres = useSelector(state => state.genres)
 
     useEffect(() => {
-        dispatch(allGenres());
-    }, []);
+        allGenres();
+    }, [genres]);
     
     useEffect(() => {
-    if (filterGenres?.length > 0) {
-        dispatch(setVideogames());
-        return () => {
-            dispatch(filterByGenre(filterGenres));
+        if (filterGenres?.length > 0) {
+            setVideogames();
+            return () => {
+                filterByGenre(filterGenres);
+            }
         }
-    }
     }, [filterGenres]);
 
     const handleChange = (e) => {
@@ -29,6 +29,7 @@ export function Filter() {
     return (
         <div className='Filter'>
             <div className='selector'>
+                <span>Genres:</span>
                 <select onChange={e => handleChange(e)}>    
                     <option value='Action'>Action</option>
                     <option value='Adventure'>Adventure</option>

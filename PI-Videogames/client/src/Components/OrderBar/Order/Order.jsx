@@ -4,6 +4,7 @@ import './Order.css';
 import { setVideogames, orderByName } from '../../../Actions/Actions';
 import { Filter } from '../Filter/Filter';
 
+
 export function Order() {
     const [order, setOrder] = useState({
         orderName: '',
@@ -13,19 +14,23 @@ export function Order() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+      dispatch(orderByName(order.orderName)) // eslint-disable-next-line
+    }, [])
+
+    useEffect(() => {
       if (order.orderName.length !== null) {
-        dispatch(setVideogames());
-        return () => {
-            dispatch(orderByName(order.orderName));
-          }
-      }
-    }, [order.orderName]);
+        setVideogames();
+      // return () => {
+      //       dispatch(orderByName(order.orderName));
+      //     }
+      } // eslint-disable-next-line
+    }, []);
     
     // useEffect(() => {
     //   if (order.orderRating.length !== null) {
-    //     dispatch(setVideogames());
+    //     setVideogames();
     //     return () => {
-    //         dispatch(orderByName(order.orderRating));
+    //         orderByName(order.orderRating);
     //       }
     //   }
     // }, [order.orderRating]);

@@ -28,7 +28,7 @@ router.get('/videogames', async (req, res) => {
 // Obtener un listado de las primeros 15 videojuegos que contengan 
 // la palabra ingresada como query parameter.
 // Si no existe ningún videojuego mostrar un mensaje adecuado.
-router.get('/videogamess', async (req, res) => {
+router.get('/videogames', async (req, res) => {
     let { name } = req.query;
 
     try {

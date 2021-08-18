@@ -13,7 +13,7 @@ export function Nav() {
             </div>
             <div className='link-Videigamecreate'>
                 <Link to='/addVideogames'>
-                    <span>Create Videogames</span>
+                    <p>Create Videogames</p>
                 </Link>
             </div>
         </div>

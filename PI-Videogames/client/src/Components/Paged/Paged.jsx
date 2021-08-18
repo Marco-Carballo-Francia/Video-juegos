@@ -11,7 +11,10 @@ export function Paged({ videogamesPerPage, videogamesPage, pageds }) {
     return (
         <div className='Paged'> {
             pages.map(num => (
-                <button className='button-pageds' key={num} onClick={() => pageds(num)}>{num}</button>
+                <button 
+                    className='button-pageds' 
+                    onClick={() => pageds(num)}>{num}
+                </button>
             ))
         }
         </div>

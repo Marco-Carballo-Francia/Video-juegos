@@ -1,9 +1,9 @@
 import { GET_VIDEOGAMES, GET_VIDEOGAMES_NAME, GET_VIDEOGAME_ID, GET_GENRES, ADD_VIDEOGAME, FILTER_GENRE, ORDER_NAME, SETING } from '../Actions/Constants';
 
 const initialState = {
-    videogames: undefined,
-    videogamesCreate: null,
-    videogameDetail: undefined,
+    videogames: [],
+    videogamesCreate: [],
+    videogameDetail: null,
     genres: []
 }
 
@@ -73,7 +73,7 @@ export default function rootReducer(state = initialState, action) {
         case SETING: {
             return {
                 ...state,
-                videogames: undefined
+                videogames: []
             }
         }        
         default: {
