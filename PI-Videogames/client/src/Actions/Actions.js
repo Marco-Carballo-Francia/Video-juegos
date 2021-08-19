@@ -1,6 +1,6 @@
 import { GET_VIDEOGAMES, GET_VIDEOGAMES_NAME, GET_VIDEOGAME_ID, GET_GENRES, ADD_VIDEOGAME, FILTER_GENRE, ORDER_NAME, ORDER_RATING, SETING } from "./Constants";
-import { getVideogames, getGenres, getVideogameID, getVideogameName, videogameCreate, filterGenres, orderNames, orderRatings } from "../Controlers/GetAll";
-
+import { getVideogames, getGenres, getVideogameID, getVideogameName, videogameCreate, orderNames, orderRatings } from "../Controlers/GetAll";
+import { URL } from "./Constants";
 
 export function allVideogames() {
     return (dispatch) => {
@@ -26,17 +26,16 @@ export function allGenres() {
     }
 }
 
-
 export function videogameDetails(id) {
-    return (dispatch) => {
-        getVideogameID(id)
-          .then(res => {
-            dispatch({ 
-                type: GET_VIDEOGAME_ID, 
-                payload: res
-            })
-          })
-    }
+  return (dispatch) => {
+    return fetch(`${URL}/videogame/${id}`)
+      .then((response) => response.json())
+      .then((json) => {
+        dispatch({ 
+          type: GET_VIDEOGAME_ID, 
+          payload: json });
+      })
+  } 
 }
 
 export function videogamesName(name) {
@@ -70,18 +69,17 @@ export function setVideogames() {
     }
 }
 
-
-export function filterByGenre(genre) {
-    return (dispatch) => {
-        filterGenres(genre)
-          .then(res => {
-            dispatch({ 
-                type: FILTER_GENRE, 
-                payload: res 
-            })
-          })
-    }
-}
+// export function filterByGenre(genre) {
+//     return (dispatch) => {
+//         filterGenres(genre)
+//           .then(res => {
+//             dispatch({ 
+//                 type: FILTER_GENRE, 
+//                 payload: res 
+//             })
+//           })
+//     }
+// }
 
 export function orderByName(orderName) {
     return (dispatch) => {
@@ -107,3 +105,12 @@ export function orderByRating(orderRating) {
     }
 }
 
+export const filterByGenre = (genre) => (dispatch, getState) => {
+	const videogame = getState().videogames.slice()
+
+	let arrayByGenre = videogame.filter((game) => game.genres.forEach(gen => gen.name === genre));
+	dispatch({
+		type: FILTER_GENRE,
+		payload: arrayByGenre
+	});
+};

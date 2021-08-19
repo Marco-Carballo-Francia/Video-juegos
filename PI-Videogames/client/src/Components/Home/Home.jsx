@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './Home.css';
-import logo from './PrincipalPage-Fondo2.jpg';
 import { Cards } from '../Cards/Cards';
 import { SearchBar } from '../NavBar/SearchBar/SearchBar';
 import { Nav } from '../NavBar/Nav/NavBar';
@@ -9,7 +8,7 @@ import { Order } from '../OrderBar/Order/Order';
 import { Paged } from '../Paged/Paged';
 import { allVideogames as getVideogamesAPI } from '../../Actions/Actions';
 
-export function Home() {
+export function Home() { 
     const [pages, setPages] = useState(1);
     const [allVideogames, setAllVideogames] = useState([]);
 
@@ -33,12 +32,11 @@ export function Home() {
 
     return (
         <div className='Home'>
-            <div className='img-fondo'>
-                <img src={logo} alt='No se encontro el fondo'/>
+            <div className='navBar'>
+                <Nav />
+                <SearchBar />
+                <Order />
             </div>
-            <Nav />
-            <SearchBar />
-            <Order />
             <Cards 
                 videogames={videogamesPage}
             />

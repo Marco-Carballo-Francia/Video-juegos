@@ -5,7 +5,7 @@ import { URL } from '../Actions/Constants';
 export async function getAllVideogames() {
     try {
         const videogames = await axios.get(`${URL}/videogames`);
-        console.log('algo');
+        // console.log('algo');
         return videogames.data;
 
     } catch (err) {

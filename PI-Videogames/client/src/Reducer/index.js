@@ -3,7 +3,7 @@ import { GET_VIDEOGAMES, GET_VIDEOGAMES_NAME, GET_VIDEOGAME_ID, GET_GENRES, ADD_
 const initialState = {
     videogames: [],
     videogamesCreate: [],
-    videogameDetail: null,
+    videogameDetail: [],
     genres: []
 }
 
@@ -19,7 +19,7 @@ export default function rootReducer(state = initialState, action) {
         case GET_VIDEOGAME_ID: {
             return {
                 ...state,
-                videogameDetail: action.payload
+                videogameDetail: [action.payload]
             }
         }
         case GET_GENRES: {

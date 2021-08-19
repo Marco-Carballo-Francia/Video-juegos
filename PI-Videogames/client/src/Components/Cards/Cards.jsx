@@ -4,14 +4,17 @@ import { Card } from './Card';
 
 
 export function Cards({ videogames }) {
+    //console.log(videogames, '11111111111111111111111111')
     return (
         <div className='Cards'> 
             {
-                videogames?.map(vid => <Card
+                videogames?.map((vid, index) => <Card
                     img={vid.image}
                     name={vid.name}
                     genres={vid.genres}    
-                    key={vid.id}                
+                    id={vid.id}
+                    key={index}
+                    index={index}                
                 />)
             }
         </div>

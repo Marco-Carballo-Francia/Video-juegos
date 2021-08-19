@@ -42,17 +42,15 @@ export function Order() {
 
     return (
       <div className='Order'>
-        <div className='text'>
-          <span>Order</span>
-        </div>
-        <div className='OrdeName'>
+        <div className='order-AZ'>
+          <span>Order:</span>
           <select name='Name' onChange={handleChange}>
             <option value='A-Z'>A-Z</option>
             <option value='Z-A'>Z-A</option>
           </select>    
-        </div>
-        <div className='filterGenres'>
-          <Filter />
+          <div className='filterGenres'>
+            <Filter />
+          </div>
         </div>
       </div>
     )

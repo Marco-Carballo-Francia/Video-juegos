@@ -1,0 +1,11 @@
+.Home {
+        background-image: url(PrincipalPage-Fondo2.jpg);
+        height: 80vh;
+        background-size: cover;
+}
+
+.navBar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

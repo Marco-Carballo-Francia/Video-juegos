@@ -1,0 +1,54 @@
+.Card{
+    margin-top: 1rem;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 250px;
+    height: 350px;
+    text-align: center;
+    background-color: coral;
+    border-radius: 25%;
+    margin: 32px;
+    color: #49274c;
+    box-shadow: 3px 3px 16px rgb(20 20 20 / 80%); 
+}
+
+.img img{
+    width: 75%;
+    height: 200px;
+    border-radius: 10px 10px 10px 10px;
+    object-fit: cover;
+
+}
+
+.name-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    width: 100%; 
+}
+
+.genres{
+    padding-inline: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Card button{
+    background-color: transparent;
+    color: black;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 20px;
+    border: inherit;
+}
+
+.Card button:hover{
+    background-color: slategray;
+
+}

@@ -1,0 +1,11 @@
+.Order {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.order-AZ {
+    display: flex;
+    flex-direction: column;
+}

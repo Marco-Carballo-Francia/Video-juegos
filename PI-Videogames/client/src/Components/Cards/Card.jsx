@@ -1,14 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {videogameDetails} from '../../Actions/Actions'
 import './Card.css';
 
 
 export function Card(props) {
+    console.log(props);
+    const dispatch = useDispatch()
+
+    const onClick = () =>{
+        dispatch(videogameDetails(props.id))
+    }
+
     return (
         <div className='Card' key={props.id}>
-            <div className='name-linck'>
-                <Link to={`/videogame/:${props.id}`}>
-                    <h3>{props.name}</h3>    
+            <div className='name-link'>
+                <Link to={`/videogame/${props.id}`}>
+                    <button onClick={onClick}>{props.name}</button>    
                 </Link>
             </div>
             <div className='img'>
